@@ -120,7 +120,7 @@ module MakeStack (Element: SERIALIZE) : (STACK with type element = Element.t) =
       List.map f s 
 
     let filter (f : element -> bool) (s : stack) : stack =
-      List.filter f empty s 
+      List.filter f s 
 
     let fold_left (f : 'a -> element -> 'a) (init : 'a) (s : stack) : 'a =
       List.fold_left
