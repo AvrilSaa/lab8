@@ -117,19 +117,18 @@ module MakeStack (Element: SERIALIZE) : (STACK with type element = Element.t) =
       snd (pop_helper s)
 
     let map (f : element -> element) (s : stack) : stack =
-      List.map f s
+      List.map
 
     let filter (f : element -> bool) (s : stack) : stack =
-      List.filter f s
+      List.filter
 
     let fold_left (f : 'a -> element -> 'a) (init : 'a) (s : stack) : 'a =
-      List.fold_left f init s
+      List.fold_left
 
     let rec serialize (s : stack) : string =
-      let s = List.rev s in 
-      match s with
-      | [] -> ""
-      | hd :: tl -> Element.serialize hd ^ serialize tl
+      let concat a b = Element.serialize a ^ 
+                      (if b <> "" then ":" ^ x else "") in 
+      fold_left concat "" s
 
   end ;;
 
@@ -160,8 +159,9 @@ the string will be made up of alphanumeric characters only.
 ......................................................................*)
 
 module IntStringStack = MakeStack
-        (struct type t = int * string
-        let serialize t = 
-            (match t with 
-              | (t1, t2) -> "(" ^ string_of_int t1 ^ ", '" ^ t2 ^ "')")
-        end) ;;
+        (struct 
+           type t = int * string
+           let serialize (n,s) = 
+            "(" ^ string_of_int n ^ ",'" ^ s ^ "')"
+        end)
+            ;;
