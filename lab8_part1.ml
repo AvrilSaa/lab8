@@ -118,7 +118,7 @@ module MakeInterval (Endpoint : ORDERED_TYPE) =
       match intvl1, intvl2 with 
       | Empty, _ 
       | _, Empty -> Empty
-      | Interval (a,b), Interval (x,y) -> if compare x b  <= 0 then Interval (x, b) 
+      | Interval (_a,b), Interval (x,_y) -> if compare x b  <= 0 then Interval (x, b) 
                                           else Empty 
     end ;;
 
@@ -225,7 +225,7 @@ module MakeSafeInterval (Endpoint : ORDERED_TYPE): INTERVAL =
     match intvl1, intvl2 with 
       | Empty, _ 
       | _, Empty -> Empty
-      | Interval (a,b), Interval (x,y) -> if compare x b  <= 0 then Interval (x, b) 
+      | Interval (_a,b), Interval (x,_y) -> if compare x b  <= 0 then Interval (x, b) 
                                           else Empty
   end ;;
 
@@ -323,7 +323,7 @@ module MakeBestInterval (Endpoint : ORDERED_TYPE): (INTERVAL with type endpoint 
     match intvl1, intvl2 with 
       | Empty, _ 
       | _, Empty -> Empty
-      | Interval (a,b), Interval (x,y) -> if compare x b  <= 0 then Interval (x, b) 
+      | Interval (_a,b), Interval (x,_y) -> if compare x b  <= 0 then Interval (x, b) 
                                           else Empty
   end ;;
 

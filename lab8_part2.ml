@@ -117,7 +117,7 @@ module MakeStack (Element: SERIALIZE) : (STACK with type element = Element.t) =
       snd (pop_helper s)
 
     let map (f : element -> element) (s : stack) : stack =
-      List.map
+      List.map f s 
 
     let filter (f : element -> bool) (s : stack) : stack =
       List.filter
